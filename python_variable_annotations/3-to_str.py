@@ -9,4 +9,4 @@ def to_str(n: float) -> str:
     """
     to str function
     """
-    return "{:.2f}".format(round(n, 2))
+    return str(n)
