@@ -2,9 +2,10 @@
 #!/usr/bin/env python3
 import math
 """
-add that takes a float a and a float
-b as arguments and returns their sum as a float.
+Write a type-annotated function floor
+which takes a float n as argument and returns the floor of the float.
 """
+
 
 def floor(n: float) -> int:
     """
