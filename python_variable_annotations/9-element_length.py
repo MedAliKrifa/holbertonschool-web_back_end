@@ -2,12 +2,11 @@
 """
 Annotated Function
 """
-from typing import List, Tuple
+from typing import List, Iterable, Sequence, Tuple
 
 
-def element_length(lst: List[str]) -> List[Tuple[str, int]]:
+def element_length(lst: Iterable[Sequence]) -> List[Tuple[Sequence, int]]:
     """
-    sum_mixed_list which takes a list
-    mxd_lst of integers and floats and returns their sum as a float.
+    AFunction that returns element length
     """
     return [(i, len(i)) for i in lst]
