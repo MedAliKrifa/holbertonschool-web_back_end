@@ -4,16 +4,7 @@ Simple pagination
 """
 import csv
 import math
-from typing import List
-
-
-def index_range(page, page_size):
-    """
-    index_range
-    """
-    start_index = (page - 1) * page_size
-    end_index = start_index + page_size
-    return start_index, end_index
+from typing import List, Tuple
 
 
 class Server:
@@ -36,13 +27,26 @@ class Server:
         return self.__dataset
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
-        assert isinstance(page, int) and page > 0, "Page must be an integer greater than 0."
-        assert isinstance(page_size, int) and page_size > 0, "Page size must be an integer greater than 0."
+        pass
 
+    def index_range(self, page: int, page_size: int) -> Tuple[int, int]:
+        """
+        return a tuple of size two containing a start index and an end index
+        """
+        end: int = page * page_size
+        start: int = 0
+        for _ in range(page - 1):
+            start += page_size
+        return (start, end)
+
+    def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
+        """
+        get page Simple pagination
+        """
+        assert isinstance(page, int) and isinstance(page_size, int)
+        assert page > 0 and page_size > 0
         dataset = self.dataset()
-        start_index, end_index = index_range(page, page_size)
-
-        if start_index >= len(dataset):
+        start, end = self.index_range(page, page_size)
+        if end > len(dataset):
             return []
-
-        return dataset[start_index:end_index]
+        return [list(dataset[row]) for row in range(start, end)]
