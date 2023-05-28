@@ -1,13 +1,16 @@
 #!/usr/bin/env python3
-#!/usr/bin/env python3
 """
 Simple helper function
 """
+from typing import Tuple
 
-def index_range(page, page_size):
+
+def index_range(page: int, page_size: int) -> Tuple[int, int]:
     """
     index_range
     """
-    start_index = (page - 1) * page_size
-    end_index = start_index + page_size - 1
-    return start_index, end_index
+    end: int = page * page_size
+    start: int = 0
+    for i in range(page - 1):
+        start += page_size
+    return (start, end)
